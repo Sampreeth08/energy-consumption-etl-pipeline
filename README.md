@@ -10,21 +10,6 @@ The architecture follows the **Medallion Architecture (Bronze → Silver → Gol
 
 ---
 
-## High Level Architecture
-
-```mermaid
-flowchart LR
-A[Energy Consumption CSV Dataset] --> B[AWS S3 Data Lake]
-B --> C[Databricks Ingestion Pipeline]
-C --> D[Bronze Layer Raw Data]
-D --> E[Silver Layer Cleaned Data]
-E --> F[Gold Layer Aggregated Analytics]
-F --> G[Databricks SQL Warehouse]
-G --> H[Dashboards and Forecasting]
-```
-
----
-
 ## End-to-End Pipeline Architecture
 
 ```mermaid
@@ -228,6 +213,7 @@ Monitoring includes
 | Component | Technology |
 |----------|------------|
 | Data Storage | AWS S3 |
+| AWS tools    | Glue / Crawler / MWAA |
 | Processing Engine | Apache Spark / PySpark |
 | Platform | Databricks |
 | Data Format | Delta Lake |
