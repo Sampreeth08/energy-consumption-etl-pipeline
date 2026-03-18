@@ -46,10 +46,6 @@ These datasets simulate a **real-world energy analytics environment**, where mul
 
 ## Bronze Layer
 
-**Table**
-
-`energy_catalog.raw.usage_records`
-
 **Purpose**
 
 - Store raw ingested data  
@@ -60,15 +56,21 @@ These datasets simulate a **real-world energy analytics environment**, where mul
 
 - CSV ingestion from S3  
 - Schema inference  
-- Ingestion timestamp creation  
+- Ingestion timestamp creation
+
+### Tables
+
+```
+raw.bronze_energy_usage
+raw.bronze_weather
+raw.bronze_device_metrics
+raw.bronze_grid_load
+raw.bronze_tariff_metrics
+```
 
 ---
 
 ## Silver Layer
-
-**Table**
-
-`energy_catalog.processed.usage_cleaned`
 
 **Purpose**
 
@@ -81,27 +83,48 @@ These datasets simulate a **real-world energy analytics environment**, where mul
 - Handle missing values  
 - Standardize timestamps  
 - Convert data types  
-- Normalize column names  
+- Normalize column names
+
+### Output Table Example
+
+```
+processed.silver_energy_usage
+```
 
 ---
 
 ## Gold Layer
 
-**Table**
+### Star Schema
+<img width="953" height="609" alt="image" src="https://github.com/user-attachments/assets/eb105858-1162-4320-a39e-1a06f8f21113" />
 
-`energy_catalog.analytics.forecast_features`
 
 **Purpose**
 
 - Provide aggregated analytics datasets  
 - Generate forecasting features  
 
-**Operations**
+**Operation**
 
 - Hourly energy consumption metrics  
 - Daily consumption aggregation  
 - Peak load calculations  
-- Forecast feature generation  
+- Forecast feature generation
+
+### Features Generated
+
+- Regional energy consumption metrics
+- Device efficiency rankings
+- Grid health and stress indicators
+- Household billing analytics
+- Weather impact on energy demand
+- Tariff plan cost comparison
+
+### Output Table Example
+
+```
+analytics.metrics_weather_energy_correlation
+```
 
 ---
 
@@ -112,7 +135,6 @@ The ETL workflow can be orchestrated using **Apache Airflow DAGs** to automate p
 <p align="center">
   <img src="https://github.com/user-attachments/assets/89d38545-aafe-4b10-922d-5da7f0779f4b" alt="Airflow Diagram" width="700"/>
 </p>
-```
 
 Apache Airflow is used to orchestrate the end-to-end ETL pipeline by defining workflows as Directed Acyclic Graphs (DAGs).
 
