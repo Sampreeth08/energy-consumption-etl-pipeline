@@ -13,17 +13,17 @@ The architecture follows the **Medallion Architecture (Bronze → Silver → Gol
 [![Airflow](https://img.shields.io/badge/Airflow-MWAA-017CEE?logo=apacheairflow)](https://airflow.apache.org)
 ---
 
-# 📂 Dataset  
+#  Dataset  
 
-## 📌 Dataset Source  
+## Dataset Source  
 
-Project-based dataset consisting of **energy consumption and grid-related data** collected from multiple structured CSV sources.
+Kaggle – **Energy Consumption Forecasting**
 
-The dataset represents a **real-world energy analytics use case**, where multiple data sources are integrated and processed through an ETL pipeline for analysis and reporting.
+The dataset consisting of **energy consumption, grid, weather related data** collected from multiple Indian cities and regions.
 
 ---
 
-### 📊 Datasets Used  
+###  Datasets Used  
 
 - `energy_usage_stream_v2.csv` → Historical household energy consumption data  
 - `device_metrics_stream_v2.csv` → Device-level energy usage and performance metrics  
@@ -132,7 +132,7 @@ Daily at **04:00 AM UTC**
 
 ---
 
-## 📊 Data Quality Checks
+## Data Quality Checks
 
 The pipeline includes multiple data quality validations to ensure reliability and accuracy of the data across Bronze, Silver, and Gold layers:
 
@@ -148,7 +148,7 @@ The pipeline includes multiple data quality validations to ensure reliability an
 if df.filter(col("global_active_power").isNull()).count() > 0:
     raise Exception("Data Quality Issue Detected")
 ```
-## 🚨 Data Quality Alerts
+## Data Quality Alerts
 
 The pipeline generates alerts when data quality issues are detected:
 
@@ -172,11 +172,11 @@ Monitoring includes
 - Job execution monitoring  
 
 ---
-## 📢 Slack Notifications
+## Slack Notifications
 
 The pipeline integrates with Slack to provide real-time alerts and monitoring updates.
 
-### 🔔 Features
+### Features
 
 - Sends alerts for data quality issues (nulls, duplicates, schema mismatches)  
 - Notifies on pipeline failures or task errors  
@@ -185,7 +185,7 @@ The pipeline integrates with Slack to provide real-time alerts and monitoring up
 
 ---
 
-## ⚙️ Use Cases
+## Use Cases
 
 - Immediate alerting for failed jobs or broken pipelines  
 - Monitoring data quality issues before they impact downstream systems  
@@ -193,7 +193,7 @@ The pipeline integrates with Slack to provide real-time alerts and monitoring up
 
 ---
 
-### ✅ Benefit
+### Benefit
 
 Slack integration ensures **real-time monitoring, faster issue resolution, and improved pipeline reliability**.
 
@@ -226,7 +226,7 @@ The pipeline enables insights such as
 These insights support **better energy forecasting and resource planning**.
 
 ---
-# 🚀 Future Enhancements
+# Future Enhancements
 
 - Support real-time data processing using streaming  
 - Improve data quality checks with advanced validation tools  
@@ -237,3 +237,21 @@ These insights support **better energy forecasting and resource planning**.
 
 ---
 
+# License
+
+This project is developed for **educational and research purposes**.
+
+---
+
+# Author
+
+### Project Lead
+
+**Sampreeth Kastoori**
+
+### Team Members
+
+- Saketh Reddy Bommireddy
+- Reddy Praneeth
+- Bijjam Amarendra Reddy
+- Neetipalli Lakshmi Malliswari
