@@ -1,17 +1,17 @@
 # Energy Consumption Forecasting Pipeline
 
 # Project Overview
-
+The objective of this project is to build a **scalable and reliable data engineering pipeline** that supports energy consumption analytics and forecasting while demonstrating modern **data lakehouse architecture and ETL best practices**.
 The **Energy Consumption Forecasting Pipeline** is a data engineering project that processes household energy consumption data using **Databricks, PySpark, and Delta Lake**.
-
 The pipeline ingests raw CSV files from **AWS S3**, performs data cleaning and transformations, and produces aggregated datasets used for **analytics and forecasting**.
-
 The architecture follows the **Medallion Architecture (Bronze → Silver → Gold)** pattern commonly used in modern data lakehouse systems.
 
+[![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)](https://python.org)
+[![PySpark](https://img.shields.io/badge/PySpark-3.x-orange?logo=apache-spark)](https://spark.apache.org)
+[![Databricks](https://img.shields.io/badge/Databricks-Serverless-red?logo=databricks)](https://databricks.com)
+[![AWS](https://img.shields.io/badge/AWS-ap--south--1-FF9900?logo=amazonaws)](https://aws.amazon.com)
+[![Airflow](https://img.shields.io/badge/Airflow-MWAA-017CEE?logo=apacheairflow)](https://airflow.apache.org)
 ---
-# Project Objective
-
-The objective of this project is to build a **scalable and reliable data engineering pipeline** that supports energy consumption analytics and forecasting while demonstrating modern **data lakehouse architecture and ETL best practices**.
 
 # 📂 Dataset  
 
@@ -37,17 +37,9 @@ These datasets simulate a **real-world energy analytics environment**, where mul
 
 ## End-to-End Pipeline Architecture
 
-```mermaid
-flowchart TD
-A[Raw Energy Dataset]
-A --> B[Upload to AWS S3]
-B --> C[Bronze Ingestion Pipeline]
-C --> D[Silver Transformation Pipeline]
-D --> E[Gold Aggregation Pipeline]
-E --> F[Analytics Tables]
-F --> G[Forecasting Models / Dashboards]
-```
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9e421b59-149d-4127-bac4-2de2beff8085" alt="Architecture Diagram" width="800"/>
+</p>
 ---
 
 # Medallion Data Architecture
@@ -117,17 +109,22 @@ F --> G[Forecasting Models / Dashboards]
 
 The ETL workflow can be orchestrated using **Apache Airflow DAGs** to automate pipeline execution.
 
-```mermaid
-flowchart TD
-A[Start DAG]
-A --> B[Extract Data From S3]
-B --> C[Load Bronze Layer]
-C --> D[Transform Data to Silver]
-D --> E[Aggregate Data to Gold]
-E --> F[Run Data Quality Checks]
-F --> G[Update Forecast Tables]
-G --> H[End DAG]
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/89d38545-aafe-4b10-922d-5da7f0779f4b" alt="Airflow Diagram" width="700"/>
+</p>
 ```
+
+Apache Airflow is used to orchestrate the end-to-end ETL pipeline by defining workflows as Directed Acyclic Graphs (DAGs).
+
+- **Workflow Scheduling**: Automates pipeline execution at defined intervals  
+- **Task Orchestration**: Manages dependencies between ingestion, transformation, and loading tasks  
+- **Scalability**: Uses executors and workers to run tasks in parallel  
+- **Monitoring**: Provides UI for tracking job status, logs, and failures  
+- **Error Handling**: Supports retries, failure handling, and alerting (Slack integration)  
+
+ # Outcome
+
+Airflow ensures reliable, automated, and scalable execution of the data pipeline from **S3 → Bronze → Silver → Gold**, improving data availability and consistency.
 
 **Schedule**
 
@@ -239,3 +236,4 @@ These insights support **better energy forecasting and resource planning**.
 - Optimize performance and reduce costs  
 
 ---
+
