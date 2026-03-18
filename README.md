@@ -9,6 +9,27 @@ The pipeline ingests raw CSV files from **AWS S3**, performs data cleaning and t
 The architecture follows the **Medallion Architecture (Bronze → Silver → Gold)** pattern commonly used in modern data lakehouse systems.
 
 ---
+# 📂 Dataset  
+
+## 📌 Dataset Source  
+
+Project-based dataset consisting of **energy consumption and grid-related data** collected from multiple structured CSV sources.
+
+The dataset represents a **real-world energy analytics use case**, where multiple data sources are integrated and processed through an ETL pipeline for analysis and reporting.
+
+---
+
+### 📊 Datasets Used  
+
+- `energy_usage.csv` → Historical household energy consumption data  
+- `device_metrics.csv` → Device-level energy usage and performance metrics  
+- `grid_load.csv` → Power grid load and distribution data  
+- `tariff_rates.csv` → Electricity pricing and tariff information  
+- `weather_data.csv` → Weather conditions affecting energy consumption  
+
+---
+
+These datasets simulate a **real-world energy analytics environment**, where multiple data sources are combined to generate insights such as consumption trends, load forecasting, and cost optimization.
 
 ## End-to-End Pipeline Architecture
 
