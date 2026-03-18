@@ -1,6 +1,6 @@
 # Energy Consumption Forecasting Pipeline
 
-## Project Overview
+# Project Overview
 
 The **Energy Consumption Forecasting Pipeline** is a data engineering project that processes household energy consumption data using **Databricks, PySpark, and Delta Lake**.
 
@@ -9,6 +9,10 @@ The pipeline ingests raw CSV files from **AWS S3**, performs data cleaning and t
 The architecture follows the **Medallion Architecture (Bronze → Silver → Gold)** pattern commonly used in modern data lakehouse systems.
 
 ---
+# Project Objective
+
+The objective of this project is to build a **scalable and reliable data engineering pipeline** that supports energy consumption analytics and forecasting while demonstrating modern **data lakehouse architecture and ETL best practices**.
+
 # 📂 Dataset  
 
 ## 📌 Dataset Source  
@@ -131,79 +135,15 @@ Daily at **04:00 AM UTC**
 
 ---
 
-# Databricks Workflow Jobs
+## 📊 Data Quality Checks
 
-The pipeline is organized into **Jobs**, where each job contains multiple **Tasks**.
+The pipeline includes multiple data quality validations to ensure reliability and accuracy of the data across Bronze, Silver, and Gold layers:
 
----
-
-## Job 1 – Data Ingestion
-
-**Purpose**
-
-Load raw CSV files from AWS S3 into Bronze tables.
-
-**Tasks**
-
-1. Read CSV files from S3  
-2. Apply schema inference  
-3. Add ingestion timestamp  
-4. Write data to Bronze Delta tables  
-
-**Output Table**
-
-`energy_catalog.raw.usage_records`
-
----
-
-## Job 2 – Data Transformation
-
-**Purpose**
-
-Clean and standardize data in Silver layer.
-
-**Tasks**
-
-1. Remove duplicate records  
-2. Handle missing values  
-3. Convert timestamp formats  
-4. Standardize column names  
-5. Generate time features  
-
-**Output Table**
-
-`energy_catalog.processed.usage_cleaned`
-
----
-
-## Job 3 – Data Aggregation
-
-**Purpose**
-
-Generate analytical datasets for forecasting.
-
-**Tasks**
-
-1. Calculate hourly consumption  
-2. Compute daily energy trends  
-3. Generate peak consumption metrics  
-4. Create forecasting feature tables  
-
-**Output Table**
-
-`energy_catalog.analytics.forecast_features`
-
----
-
-# Data Quality Checks
-
-Data validation rules implemented in the pipeline
-
-- Schema validation  
-- Null value detection  
-- Duplicate record detection  
-- Timestamp consistency checks  
-- Data range validation  
+- **Null Checks**: Identifies missing values in critical columns such as timestamps and meter readings.  
+- **Duplicate Detection**: Ensures no duplicate records are processed across datasets.  
+- **Schema Validation**: Verifies column names and data types match expected schema definitions.  
+- **Range Validation**: Detects invalid values (e.g., negative energy consumption).  
+- **Data Consistency**: Ensures consistent formatting and standardized values across datasets.    
 
 **Example validation logic**
 
@@ -211,7 +151,14 @@ Data validation rules implemented in the pipeline
 if df.filter(col("global_active_power").isNull()).count() > 0:
     raise Exception("Data Quality Issue Detected")
 ```
+## 🚨 Data Quality Alerts
 
+The pipeline generates alerts when data quality issues are detected:
+
+- ⚠️ Missing or null values found in critical fields  
+- ⚠️ Duplicate records detected  
+- ⚠️ Schema mismatches or missing columns  
+- ⚠️ Invalid or out-of-range values identified
 ---
 
 # Error Handling and Monitoring
@@ -228,7 +175,32 @@ Monitoring includes
 - Job execution monitoring  
 
 ---
+## 📢 Slack Notifications
 
+The pipeline integrates with Slack to provide real-time alerts and monitoring updates.
+
+### 🔔 Features
+
+- Sends alerts for data quality issues (nulls, duplicates, schema mismatches)  
+- Notifies on pipeline failures or task errors  
+- Provides success notifications after pipeline completion  
+- Enables quick visibility for data engineers and stakeholders  
+
+---
+
+## ⚙️ Use Cases
+
+- Immediate alerting for failed jobs or broken pipelines  
+- Monitoring data quality issues before they impact downstream systems  
+- Keeping teams informed about pipeline execution status  
+
+---
+
+### ✅ Benefit
+
+Slack integration ensures **real-time monitoring, faster issue resolution, and improved pipeline reliability**.
+
+---
 # Technology Stack
 
 | Component | Technology |
@@ -257,7 +229,13 @@ The pipeline enables insights such as
 These insights support **better energy forecasting and resource planning**.
 
 ---
+# 🚀 Future Enhancements
 
-# Project Objective
+- Support real-time data processing using streaming  
+- Improve data quality checks with advanced validation tools  
+- Add multi-channel alerts (Slack, Email)  
+- Implement CI/CD for automated deployments  
+- Enhance dashboards for better insights  
+- Optimize performance and reduce costs  
 
-The objective of this project is to build a **scalable and reliable data engineering pipeline** that supports energy consumption analytics and forecasting while demonstrating modern **data lakehouse architecture and ETL best practices**.
+---
