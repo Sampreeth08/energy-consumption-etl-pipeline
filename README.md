@@ -25,11 +25,11 @@ The dataset represents a **real-world energy analytics use case**, where multipl
 
 ### 📊 Datasets Used  
 
-- `energy_usage.csv` → Historical household energy consumption data  
-- `device_metrics.csv` → Device-level energy usage and performance metrics  
-- `grid_load.csv` → Power grid load and distribution data  
-- `tariff_rates.csv` → Electricity pricing and tariff information  
-- `weather_data.csv` → Weather conditions affecting energy consumption  
+- `energy_usage_stream_v2.csv` → Historical household energy consumption data  
+- `device_metrics_stream_v2.csv` → Device-level energy usage and performance metrics  
+- `grid_load_stream_v2.csv` → Power grid load and distribution data  
+- `tariff_metrics_stream_v2.csv` → Electricity pricing and tariff information  
+- `weather_stream_v2.csv` → Weather conditions affecting energy consumption  
 
 ---
 
