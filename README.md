@@ -130,11 +130,11 @@ analytics.metrics_weather_energy_correlation
 
 # Airflow Orchestration
 
-The ETL workflow can be orchestrated using **Apache Airflow DAGs** to automate pipeline execution.
-
 <p align="center">
   <img src="https://github.com/user-attachments/assets/89d38545-aafe-4b10-922d-5da7f0779f4b" alt="Airflow Diagram" width="700"/>
 </p>
+
+The ETL workflow can be orchestrated using **Apache Airflow DAGs** to automate pipeline execution.
 
 Apache Airflow is used to orchestrate the end-to-end ETL pipeline by defining workflows as Directed Acyclic Graphs (DAGs).
 
@@ -144,11 +144,11 @@ Apache Airflow is used to orchestrate the end-to-end ETL pipeline by defining wo
 - **Monitoring**: Provides UI for tracking job status, logs, and failures  
 - **Error Handling**: Supports retries, failure handling, and alerting (Slack integration)  
 
- # Outcome
+ ### Outcome
 
 Airflow ensures reliable, automated, and scalable execution of the data pipeline from **S3 → Bronze → Silver → Gold**, improving data availability and consistency.
 
-**Schedule**
+### Schedule
 
 Daily at **04:00 AM UTC**
 
@@ -170,7 +170,7 @@ The pipeline includes multiple data quality validations to ensure reliability an
 if df.filter(col("global_active_power").isNull()).count() > 0:
     raise Exception("Data Quality Issue Detected")
 ```
-## Data Quality Alerts
+# Data Quality Alerts
 
 The pipeline generates alerts when data quality issues are detected:
 
@@ -180,7 +180,7 @@ The pipeline generates alerts when data quality issues are detected:
 - ⚠️ Invalid or out-of-range values identified
 ---
 
-# Error Handling and Monitoring
+## Error Handling and Monitoring
 
 Pipeline failures and anomalies are logged in
 
@@ -194,18 +194,16 @@ Monitoring includes
 - Job execution monitoring  
 
 ---
-## Slack Notifications
+# Slack Notifications
 
 The pipeline integrates with Slack to provide real-time alerts and monitoring updates.
 
-### Features
+## Features
 
 - Sends alerts for data quality issues (nulls, duplicates, schema mismatches)  
 - Notifies on pipeline failures or task errors  
 - Provides success notifications after pipeline completion  
-- Enables quick visibility for data engineers and stakeholders  
-
----
+- Enables quick visibility for data engineers and stakeholders
 
 ## Use Cases
 
@@ -213,13 +211,58 @@ The pipeline integrates with Slack to provide real-time alerts and monitoring up
 - Monitoring data quality issues before they impact downstream systems  
 - Keeping teams informed about pipeline execution status  
 
----
-
-### Benefit
+## Benefit
 
 Slack integration ensures **real-time monitoring, faster issue resolution, and improved pipeline reliability**.
 
 ---
+
+# Analytics Dashboards & Artifacts
+
+This section contains **dashboards generated from the analytics (Gold layer) dataset**.
+
+---
+
+## Energy consumption dashboard
+
+Tracks total and average energy usage across regions, cities, and customer categories.
+
+<img width="1901" height="934" alt="image" src="https://github.com/user-attachments/assets/11928336-f0c2-4f9c-9f05-a9bb4931921e" />
+
+---
+
+## Weather impact dashboard
+
+Correlates temperature and humidity with energy demand to quantify how climate drives consumption.
+
+<img width="1902" height="931" alt="image" src="https://github.com/user-attachments/assets/8ad9b146-bfc4-4777-8698-3c5b74f01b94" />
+
+---
+
+## Device monitoring dashboard
+
+Analyzes device runtime, efficiency, and maintenance status across categories and brands.
+
+<img width="1898" height="931" alt="image" src="https://github.com/user-attachments/assets/002c90ab-02f4-4e00-8122-d4c5ab932ca4" />
+
+---
+
+## Grid monitoring dashboard
+
+Monitors grid load, transformer stress, and line loss percentage by region to identify infrastructure risks.
+
+<img width="1896" height="926" alt="image" src="https://github.com/user-attachments/assets/00bca798-5ee8-4396-a610-e74430ce24ff" />
+
+---
+
+## Billing analytics dashboard
+
+Compares monthly billing across tariff plans, cities, and household tiers to surface cost patterns.
+
+<img width="1894" height="928" alt="image" src="https://github.com/user-attachments/assets/8359924e-42d2-4cbc-9b4f-603002b0b919" />
+
+---
+
 # Technology Stack
 
 | Component | Technology |
