@@ -21,9 +21,7 @@ Kaggle – **Energy Consumption Forecasting**
 
 The dataset consisting of **energy consumption, grid, weather related data** collected from multiple Indian cities and regions.
 
----
-
-###  Datasets Used  
+##  Datasets Used  
 
 - `energy_usage_stream_v2.csv` → Historical household energy consumption data  
 - `device_metrics_stream_v2.csv` → Device-level energy usage and performance metrics  
@@ -31,28 +29,27 @@ The dataset consisting of **energy consumption, grid, weather related data** col
 - `tariff_metrics_stream_v2.csv` → Electricity pricing and tariff information  
 - `weather_stream_v2.csv` → Weather conditions affecting energy consumption  
 
----
-
 These datasets simulate a **real-world energy analytics environment**, where multiple data sources are combined to generate insights such as consumption trends, load forecasting, and cost optimization.
 
-## End-to-End Pipeline Architecture
+---
+
+# End-to-End Pipeline Architecture
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/9e421b59-149d-4127-bac4-2de2beff8085" alt="Architecture Diagram" width="800"/>
 </p>
----
 
 # Medallion Data Architecture
 
 ## Bronze Layer
 
-**Purpose**
+### Purpose
 
 - Store raw ingested data  
 - Preserve source records  
 - Enable reprocessing  
 
-**Operations**
+### Operations
 
 - CSV ingestion from S3  
 - Schema inference  
@@ -72,12 +69,12 @@ raw.bronze_tariff_metrics
 
 ## Silver Layer
 
-**Purpose**
+### Purpose
 
 - Clean and standardize raw data  
 - Prepare structured datasets for analytics  
 
-**Transformations**
+### Transformations
 
 - Remove duplicate records  
 - Handle missing values  
@@ -99,12 +96,12 @@ processed.silver_energy_usage
 <img width="953" height="609" alt="image" src="https://github.com/user-attachments/assets/eb105858-1162-4320-a39e-1a06f8f21113" />
 
 
-**Purpose**
+### Purpose
 
 - Provide aggregated analytics datasets  
 - Generate forecasting features  
 
-**Operation**
+### Operation
 
 - Hourly energy consumption metrics  
 - Daily consumption aggregation  
@@ -144,7 +141,7 @@ Apache Airflow is used to orchestrate the end-to-end ETL pipeline by defining wo
 - **Monitoring**: Provides UI for tracking job status, logs, and failures  
 - **Error Handling**: Supports retries, failure handling, and alerting (Slack integration)  
 
- ### Outcome
+### Outcome
 
 Airflow ensures reliable, automated, and scalable execution of the data pipeline from **S3 → Bronze → Silver → Gold**, improving data availability and consistency.
 
@@ -154,7 +151,7 @@ Daily at **04:00 AM UTC**
 
 ---
 
-## Data Quality Checks
+# Data Quality Checks
 
 The pipeline includes multiple data quality validations to ensure reliability and accuracy of the data across Bronze, Silver, and Gold layers:
 
@@ -170,15 +167,14 @@ The pipeline includes multiple data quality validations to ensure reliability an
 if df.filter(col("global_active_power").isNull()).count() > 0:
     raise Exception("Data Quality Issue Detected")
 ```
-# Data Quality Alerts
+## Data Quality Alerts
 
 The pipeline generates alerts when data quality issues are detected:
 
-- ⚠️ Missing or null values found in critical fields  
-- ⚠️ Duplicate records detected  
-- ⚠️ Schema mismatches or missing columns  
-- ⚠️ Invalid or out-of-range values identified
----
+- Missing or null values found in critical fields  
+- Duplicate records detected  
+- Schema mismatches or missing columns  
+- Invalid or out-of-range values identified
 
 ## Error Handling and Monitoring
 
@@ -194,6 +190,7 @@ Monitoring includes
 - Job execution monitoring  
 
 ---
+
 # Slack Notifications
 
 The pipeline integrates with Slack to provide real-time alerts and monitoring updates.
@@ -291,6 +288,7 @@ The pipeline enables insights such as
 These insights support **better energy forecasting and resource planning**.
 
 ---
+
 # Future Enhancements
 
 - Support real-time data processing using streaming  
